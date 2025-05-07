@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload CSV</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .image-container {
+      width: 50%; 
+      height: 100%;  
+      
+      
+      background-image: url('https://d29fhpw069ctt2.cloudfront.net/photo/7120/preview/2d106092-a1ec-41dd-8a5e-4983fb1d924e_1280x1280.jpg');
+      background-size: cover;
+      background-position: center;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-right: 150px;
+    }
+
+    h1 {
+      color: #333;
+      margin-right: 300px;
+    }
+
+    form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    label {
+      font-weight: bold;
+      color: #555;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+
+    input:focus {
+      border-color: #153448;
+      outline: none;
+      box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    }
+
+    button {
+      background-color: #153448;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    @media (max-width: 480px) {
+      form {
+        padding: 15px;
+      }
+
+      input, button {
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="image-container"></div>
+  <div>
+    <h1>Upload CSV and Specify Class</h1>
+    <form id="csvForm" action="/upload-csv" method="POST" enctype="multipart/form-data">
+      <label for="schoolname">School:</label>
+      <input type="text" id="schoolname" name="schoolname" required>
+      <label for="collectionName">Class Name:</label>
+      <input type="text" id="collectionName" name="collectionName" required>
+      <label for="Fee">Fee:</label>
+      <input type="text" id="Fee" name="Fee" required>
+      <label for="csvFile">CSV File:</label>
+      <input type="file" id="csvFile" name="csvFile" accept=".csv" required>
+      <button type="submit">Upload</button>
+    </form>
+  </div>
+</body>
+</html>

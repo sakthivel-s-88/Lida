@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mark Absentees</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .image-container {
+      width: 50%; 
+  height: 100%; 
+          
+            background-image: url('https://d29fhpw069ctt2.cloudfront.net/photo/7120/preview/2d106092-a1ec-41dd-8a5e-4983fb1d924e_1280x1280.jpg');
+            background-size: cover;
+            background-position: center;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+  
+    h1 {
+      color: #333;
+      margin-right: 300px;
+    }
+  
+    form {
+   
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 400px;
+    }
+  
+    label {
+      font-weight: bold;
+      color: #555;
+      display: block;
+      margin-bottom: 8px;
+    }
+  
+    input, textarea, select, button {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+  
+    input:focus, textarea:focus, select:focus {
+      border-color: #153448;
+      outline: none;
+      box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    }
+  
+    button {
+      background-color: #153448;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+  
+    button:hover {
+      background-color: #0056b3;
+    }
+  
+    textarea {
+      resize: none;
+    }
+  
+    @media (max-width: 480px) {
+      form {
+        padding: 15px;
+      }
+  
+      input, textarea, select, button {
+        font-size: 12px;
+      }
+    }
+  </style>
+  
+</head>
+
+
+  
+   
+
+  
+  
+    <body>
+      <div style="display: flex; width: 100%; height: 100vh;">
+        <div class="image-container"></div>
+        <div style="flex: 1; display: flex; justify-content: center; align-items: center;">
+          
+          <form id="attendanceForm">
+            <label for="schoolName">School Name:</label>
+            <input type="text" id="schoolName" name="schoolName" required>
+            <br><br>
+          
+            <label for="className">Class Name:</label>
+            <input type="text" id="className" name="className" required>
+            <br><br>
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required>
+            <br><br>
+    
+            <label for="subject">Subject:</label>
+            <select id="subject" name="subject" required>
+              <option value="" disabled selected>Select a subject</option>
+              <option value="Math">Math</option>
+              <option value="Science">Science</option>
+              <option value="English">English</option>
+              <option value="History">History</option>
+              <option value="Geography">Geography</option>
+            </select>
+            <br><br>
+    
+            <label for="absentees">Absentees (Comma-separated names):</label>
+            <textarea id="absentees" name="absentees" rows="4" cols="50" required></textarea>
+            <br><br>
+    
+            <button type="submit">Submit</button>
+            <button type="button" id="doneButton">Done</button>
+          </form>
+        </div>
+      </div>
+    </body>
+    
+
+  
+ 
+
+  <script>
+  
+
+     document.getElementById('doneButton').addEventListener('click', () => {
+    
+    window.location.href = 'http://127.0.0.1:5001/api';
+  });
+    document.getElementById("attendanceForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      
+      const data = {
+        date: document.getElementById("date").value,
+        subject: document.getElementById("subject").value,
+        absentees: document.getElementById("absentees").value.split(",").map(name => name.trim()),
+        schoolName: document.getElementById("schoolName").value,
+        className : document.getElementById("className").value,
+      };
+
+      const response = await fetch("/mark-absentees", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+
+      const result = await response.json();
+      alert(result.message);
+      const form = document.getElementById('attendanceForm');
+      
+      
+ 
+      form.subject.selectedIndex = 0; 
+      form.absentees.value = '';
+    });
+  </script>
+</body>
+</html>

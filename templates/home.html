@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+       .logo {
+        margin-left: 50px;
+    font-size: 1.5rem;
+    color: #153448;
+  }
+  
+.home-h2{
+    margin-left: 10px;
+    color:#153448;
+    font-size: 60px;
+    margin-bottom: 100px;
+}
+  .home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color:#e8f1f9;
+    color: #ffffff;
+    height: 100vh;
+    padding: 20px;
+  }
+  
+  .home-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px 20px;
+  }
+  
+ 
+  .nav-links {
+      display: flex;
+      gap: 15px;
+      margin-right: 200px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.3s;
+      margin-right: 50px;
+    }
+    #login{
+        background-color: #153448;
+    color: #f9f9f9;
+    }
+  .main-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: -100px 20px;
+    margin-bottom: 200px;
+  }
+  
+  .text-content {
+    max-width: 50%;
+  }
+  
+  .text-content h2 {
+    font-size: 4.5rem;
+    margin-bottom: 40px;
+  }
+  
+  .home-buttons {
+    margin-left: 15px;
+    display: flex;
+    gap: 50px;
+    
+    
+  }
+  
+  .home-button {
+    background-color: transparent;
+    color: #153448;
+    border: 2px solid #153448;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 50px;
+    font-size: 18px; 
+    font-weight: bold;
+    padding: 10px 20px; 
+    
+    cursor: pointer; 
+ 
+  }
+  
+  .home-button:hover {
+    background-color: #153448;
+    color: #f9f9f9;
+  }
+  
+  .image-content img {
+    max-width: 550px;
+    height: 450px;
+    margin-right: 150px;
+  }
+       
+    </style>
+</head>
+<body>
+    <div class="home-container">
+      <header class="home-header">
+        <h1 class="logo">LIDA Viz</h1>
+        <nav class="nav-links">
+            <a href="#about">About Us</a>
+            <a href="#services">Services</a>
+            <a href="#solutions">Solutions</a>
+            <a href="#resources">Resources</a>
+            <a href="#contact">Contact Us</a>
+          </nav>
+      </header>
+  
+      <main class="main-content" style="margin-left: 50px;">
+        <div class="text-content">
+          <h3 class="home-h2">
+            Transform your data into dynamic visual stories with LIDA for smarter insights and decisions.
+          </h3>
+          <div class="home-buttons">
+            <a href="/register">
+                <button class="home-button">Register</button>
+              </a>
+           <a href="/login">
+            <button class="home-button" id="login">Login</button>
+           </a>
+           
+          </div>
+        </div>
+  
+        <div class="image-content">
+          <img src="https://png.pngtree.com/png-vector/20220630/ourmid/pngtree-man-working-on-data-analysis-and-research-png-image_5632468.png" alt="img" />
+        </div>
+      </main>
+    </div>
+  </body>
+  

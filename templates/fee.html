@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+        }
+
+        .fee-container {
+            display: flex;
+            height: 100vh;
+        }
+
+        .form-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #e8f1f9;
+            padding: 20px;
+        }
+
+        .image-container {
+            flex: 1;
+            background-image: url('https://d29fhpw069ctt2.cloudfront.net/photo/7120/preview/2d106092-a1ec-41dd-8a5e-4983fb1d924e_1280x1280.jpg');
+            background-size: cover;
+            background-position: center;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .fee-form {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .fee-input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .fee-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #153448;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .fee-button:hover {
+            background-color: #153448;
+        }
+
+        .form-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #153448;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="fee-container">
+        <div class="form-container">
+            <h2 class="form-title">Update Fee Data</h2>
+            <form class="fee-form" id="feeForm">
+                <input
+                    class="fee-input"
+                    type="text"
+                    name="schoolName"
+                    id="schoolName"
+                    placeholder="School Name"
+                />
+                <input
+                    class="fee-input"
+                    type="text"
+                    name="className"
+                    id="className"
+                    placeholder="Class Name"
+                />
+                <input
+                    class="fee-input"
+                    type="text"
+                    name="studentName"
+                    id="studentName"
+                    placeholder="Student Name"
+                />
+                <input
+                    class="fee-input"
+                    type="number"
+                    name="amountPaid"
+                    id="amountPaid"
+                    placeholder="Amount Paid"
+                />
+                <button class="fee-button" type="submit" id="updateFeeBtn">Update Fee</button>
+            </form>
+        </div>
+        <div class="image-container"></div>
+    </div>
+    <script>
+        document.getElementById("updateFeeBtn").addEventListener("click", async function (event) {
+            event.preventDefault();
+            const schoolName = document.getElementById("schoolName").value;
+            const className = document.getElementById("className").value;
+            const studentName = document.getElementById("studentName").value;
+            const amountPaid = parseFloat(document.getElementById("amountPaid").value);
+
+            try {
+                const response = await fetch("http://localhost:3000/update-fee", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ schoolName, className, studentName, amountPaid }),
+                });
+
+                if (response.ok) {
+                    alert("Fee data updated successfully!");
+                } else {
+                    const errorMessage = await response.text();
+                    alert("Error: " + errorMessage);
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                alert("An error occurred while updating the fee data.");
+            }
+        });
+    </script>
+</body>
+</html>
